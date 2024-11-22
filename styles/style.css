@@ -1,3 +1,7 @@
+:root {
+  --accent-color: #545050;
+}
+
 *,
 *::before,
 *::after {
@@ -8,21 +12,16 @@ html {
   block-size: 100%;
 }
 
-a,
-button {
-  cursor: pointer;
-}
-
 .page {
   display: flex;
-  inline-size: 1200px;
-  block-size: 100%;
   margin: auto;
   color: #fff;
   font-family: 'Fira Sans Condensed', sans-serif;
-  font-size: 18px;
   font-weight: 400;
+  font-size: 18px;
   background-color: #1b1919;
+  inline-size: 1200px;
+  block-size: 100%;
 }
 
 h1,
@@ -48,45 +47,37 @@ fieldset {
   border: none;
 }
 
-.content {
-  display: grid;
-  place-content: center;
-  align-items: end;
-  margin: 0 30px;
-  grid-template-columns: 6fr 3fr;
-  column-gap: 30px;
-}
-
 .visually-hidden {
   position: absolute;
-  inline-size: 1px;
-  block-size: 1px;
   overflow: hidden;
   clip: rect(0 0 0 0);
+  inline-size: 1px;
+  block-size: 1px;
   clip-path: inset(50%);
   white-space: nowrap;
 }
 
-.button {
-  border: 1px solid #fff;
-  background-color: transparent;
-  font: inherit;
-  font-weight: 700;
-  color: #fff;
-  height: 34px;
+.content {
+  display: grid;
+  grid-template-columns: 6fr 3fr;
+  place-content: center;
+  align-items: end;
+  column-gap: 30px;
+  margin: 0 30px;
 }
 
-.button:hover {
-  text-decoration: underline;
+.result {
+  display: grid;
+  gap: 16px;
 }
 
-.button:active {
-  background-color: #545050;
+.result__video-container {
+  position: relative;
+  align-self: end;
 }
 
-.button:focus {
-  outline: none;
-  border: 1px solid #fff;
+.result__video {
+  width: 100%;
 }
 
 .search-form {
@@ -100,10 +91,65 @@ fieldset {
   width: 100%;
 }
 
+.search-form__fieldset-title {
+  margin-bottom: 5px;
+  font-weight: 400;
+  font-size: inherit;
+  line-height: 21.6px;
+}
+
 .search-form__label {
   display: flex;
   align-items: center;
-  width: 100%;
+  width: fit-content;
+}
+
+.search-form__label:hover,
+.content__card-link:hover,
+.button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.search-form__label:focus,
+.content__card-link:focus,
+.search-form__textfield:focus,
+.button:focus {
+  outline: none;
+}
+
+.search-form__label:has(:focus-visible),
+.content__card-link:focus-visible,
+.search-form__textfield:focus-visible,
+.button:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 1px;
+}
+
+.search-form__fieldset-title + .search-form__label:hover {
+  text-decoration: none;
+}
+
+.search-form__textfield {
+  width: 225px;
+  border: none;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  padding: 2.5px 0;
+  color: #fff;
+  font-family: inherit;
+  font-size: inherit;
+  background-color: transparent;
+  appearance: none;
+}
+
+.search-form__textfield::placeholder {
+  color: #ffffffb2;
+}
+
+.search-form__textfield:active {
+  border-right: 1px solid #fff;
+  border-left: 1px solid #fff;
 }
 
 .search-form__checkbox-list {
@@ -112,57 +158,36 @@ fieldset {
 }
 
 .search-form__pseudo-checkbox {
-  display: inline-block;
+  display: flex;
+  place-items: center;
   width: 19px;
   height: 19px;
-  border: 1px solid #fff;
   margin-right: 5px;
+  border: 1px solid #fff;
+  padding-left: 1px;
   vertical-align: middle;
   background-color: transparent;
 }
 
-.search-form__checkbox:checked + .search-form__pseudo-checkbox {
-  background-color: magenta;
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::after {
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
 }
 
-.search-form__textfield {
-  appearance: none;
-  font-family: inherit;
-  font-size: inherit;
-  color: #ffffffb2;
-  background-color: transparent;
-  width: 100%;
-  padding: 2.5px 0;
-  border: none;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
-}
-
-.search-form__textfield:focus {
-  outline: none;
-  padding: 2px;
-}
-
-.search-form__textfield:active {
-  border-left: 1px solid #fff;
-  border-right: 1px solid #fff;
-}
-
-.search-form__label:has(:focus-visible) {
+.button {
+  height: 34px;
   border: 1px solid #fff;
-  padding: 1px;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  background-color: transparent;
 }
 
-.search-form__label:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.search-form__fieldset-title {
-  font-size: inherit;
-  font-weight: 400;
-  line-height: 21.6px;
-  margin-bottom: 5px;
+.button:active {
+  background-color: var(--accent-color);
 }
 
 .search-form__submit-button {
@@ -170,50 +195,34 @@ fieldset {
   padding: 0 73px;
 }
 
-.result {
-  display: grid;
-  gap: 16px;
-}
-
-.result__video-container {
-  width: 100%;
-  position: relative;
-  align-self: end;
-}
-
-.result__video {
-  width: 100%;
-}
-
 .content__details {
   display: flex;
   flex-direction: column;
-  height: 534px;
 }
 
 .title {
+  margin-bottom: 26px;
   font-family: Oswald, sans-serif;
   font-weight: 700;
   font-size: 75px;
   line-height: 70.5px;
   text-transform: uppercase;
-  margin-bottom: 26px;
 }
 
 .content__accent {
-  color: #545050;
+  color: var(--accent-color);
 }
 
 .content__list {
-  display: grid;
-  overflow: hidden scroll;
-  grid-template-columns: 399px;
   position: relative;
+  display: grid;
+  grid-template-columns: 399px;
+  height: 298px;
+  overflow: hidden auto;
 }
 
 .content__list-item {
   margin-bottom: 30px;
-  height: 107px;
 }
 
 .content__list-item:last-child {
@@ -221,27 +230,15 @@ fieldset {
 }
 
 .content__card-link {
-  width: 100%;
-  text-decoration: none;
-  color: #fff;
   display: block;
+  width: 100%;
   margin: 2px;
-}
-
-.content__card-link:hover {
-  text-decoration: underline;
-}
-
-.content__card-link:focus {
-  outline: none;
-}
-
-.content__card-link:focus-visible {
-  border: 1px solid #fff;
+  color: #fff;
+  text-decoration: none;
 }
 
 .content__card-link_current {
-  background-color: #545050;
+  background-color: var(--accent-color);
 }
 
 .content__video-card {
@@ -251,21 +248,21 @@ fieldset {
   align-items: flex-start;
 }
 
+.content__video-card-description-container {
+  width: 51%;
+}
+
 .content__video-card-title {
+  margin-bottom: 6px;
   font-weight: 700;
   font-size: 30px;
   line-height: 30px;
   text-transform: uppercase;
-  margin-bottom: 6px;
 }
 
 .content__video-card-description {
-  line-height: 16.2px;
   font-weight: 400;
-}
-
-.content__video-card-description-container {
-  width: 51%;
+  line-height: 16.2px;
 }
 
 .content__video-card-thumbnail {
