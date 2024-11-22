@@ -59,7 +59,7 @@ fieldset {
 
 .content {
   display: grid;
-  grid-template-columns: 6fr 3fr;
+  grid-template-columns: 5fr 3fr;
   place-content: center;
   align-items: end;
   column-gap: 30px;
@@ -73,11 +73,15 @@ fieldset {
 
 .result__video-container {
   position: relative;
-  align-self: end;
+  max-height: 386px;
+  max-width: 100%;
 }
 
 .result__video {
+  object-fit: cover;
+  object-position: center;
   width: 100%;
+  height: 100%;
 }
 
 .search-form {
@@ -215,10 +219,8 @@ fieldset {
 
 .content__list {
   position: relative;
-  display: grid;
-  grid-template-columns: 399px;
-  height: 298px;
-  overflow: hidden auto;
+  max-height: 298px;
+  overflow: auto;
 }
 
 .content__list-item {
@@ -231,12 +233,13 @@ fieldset {
 
 .content__card-link {
   display: block;
-  width: 100%;
+  max-width: 100%;
   margin: 2px;
   color: #fff;
   text-decoration: none;
 }
 
+.content__card-link:active,
 .content__card-link_current {
   background-color: var(--accent-color);
 }
@@ -253,11 +256,16 @@ fieldset {
 }
 
 .content__video-card-title {
+  font-family: Oswald, sans-serif;
   margin-bottom: 6px;
   font-weight: 700;
   font-size: 30px;
   line-height: 30px;
   text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 192px;
 }
 
 .content__video-card-description {
@@ -266,7 +274,9 @@ fieldset {
 }
 
 .content__video-card-thumbnail {
-  width: 49%;
+  max-width: 49%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .more-button {
